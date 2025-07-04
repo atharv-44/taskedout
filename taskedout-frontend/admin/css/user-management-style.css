@@ -1,0 +1,265 @@
+body {
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+.blurred {
+    filter: blur(3px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+  }
+  
+/* Basic styles for the container */
+.user-management-container {
+    padding: 20px;
+}
+
+.user-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap; /* allows responsiveness */
+    margin-bottom: 20px;
+  }
+  
+  .user-header-text {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .user-list-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  #role-filter {
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-user-btn {
+    background-color: #1e40af;
+    color: white;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .add-user-btn:hover {
+    background-color: #1c3aa9;
+  }
+  
+
+.add-user-btn {
+    background-color: #0B2349;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-user-btn:hover {
+    background-color: #2B446A;
+}
+
+/* User table styles */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-table th, .user-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+/* Table scroll container */
+.table-wrapper {
+    max-height: 65vh; /* adjust height as needed */
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  /* Basic table styling */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Table headers */
+  .user-table thead th {
+    background-color: #f5f5f5;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Table cells */
+  .user-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Optional: Button spacing inside actions cell */
+  .actions-cell button {
+    margin-right: 8px;
+  }
+  
+/* Action buttons in the table */
+.user-table .actions-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.user-table button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.user-table button:hover {
+    background-color: #e9ecef;
+}
+
+.user-table .edit-btn {
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.user-table .delete-btn {
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.user-table .role-toggle {
+    border-color: #28a745;
+    color: #155724;
+}
+
+/* Modal styles */
+.user-modal {
+    display: none;
+    position: fixed;
+    z-index: 1300;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.user-modal-box {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px; /* Increased from 550px */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.user-modal.flex, .user-modal-box.show {
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-user-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+/* Form layout */
+#userForm {
+    width: 100%;
+}
+
+#userForm div {
+    margin-bottom: 22px;
+}
+
+#userForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+#userForm input,
+#userForm select {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+#userForm button[type="submit"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: #0B2349;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+#userForm button[type="submit"]:hover {
+    background-color: #2B446A;
+}

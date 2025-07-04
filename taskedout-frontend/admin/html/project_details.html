@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../css/project-details-style.css">
+    <link rel="stylesheet" href="../css/admin_dashboard_style.css">
+    <link rel="stylesheet" href="../css/admin-profile-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="pd-header">
+        <input class="pd-search" type="text" placeholder="Search projects, tasks..." />
+        <div class="pd-header-right">
+            <div class="profile">
+                <a href="admin_profile.html"><img id="pd-admin-avatar" src="../../assets/images/img_avatar.png" alt="avatar" class="avatar"></a>
+                <div class="profile-name">
+                    <h2 id="pd-admin-username" class="username">Admin</h2>
+                    <h4 id="pd-admin-role" class="user-role">Admin</h4>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pd-main">
+        <a href="projects.html" class="pd-back-link">&#8592; Back to Projects</a>
+        <section class="pd-summary-card">
+            <div class="pd-summary-header">
+                <div>
+                    <h1 class="pd-project-title"></h1>
+                    <div class="pd-project-desc"></div>
+                </div>
+                <div class="pd-summary-actions">
+                    <button class="pd-edit-btn">Edit</button>
+                    <button class="pd-more-btn">...</button>
+                </div>
+            </div>
+            <div class="pd-summary-meta">
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Status</div>
+                    <select class="pd-meta-value pd-status-select"></select>
+                </div>
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Timeline</div>
+                    <div class="pd-meta-value"></div>
+                </div>
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Location</div>
+                    <select class="pd-meta-value pd-location-select"></select>
+                </div>
+            </div>
+            <div class="pd-progress-label">Progress</div>
+            <div class="pd-progress-bar"><div class="pd-progress-bar-inner" style="width:65%"></div></div>
+        </section>
+        <div class="pd-main-grid">
+            <div class="pd-card pd-tasks-card">
+                <div class="pd-card-header">
+                    <h2>Tasks</h2>
+                    <div class="pd-tasks-actions">
+                        <select class="pd-tasks-filter">
+                            <option value="all">All Tasks</option>
+                        </select>
+                        <select class="pd-tasks-group-by">
+                            <option value="team">Group by Team</option>
+                            <option value="assignee">Group by Assignee</option>
+                            <option value="status">Group by Status</option>
+                        </select>
+                        <button class="pd-tasks-add-btn">+</button>
+                    </div>
+                </div>
+                <div class="pd-tasks-table-scroll">
+                    <table class="pd-tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Team</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Assignee</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks-list">
+                            <!-- Tasks will be rendered here by project-details.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <aside class="pd-side-col">
+                <section class="pd-team-card">
+                    <div class="pd-team-header">
+                        <h2>Team Members</h2>
+                        <button class="pd-team-add-btn">+</button>
+                    </div>
+                    <ul class="pd-team-list" id="team-list">
+                        <!-- Team members will be populated by JavaScript -->
+                    </ul>
+                </section>
+                <section class="pd-progress-card">
+                    <h2>Project Progress</h2>
+                    <div class="pd-progress-row">
+                        <span>Overall Progress</span>
+                        <span id="overall-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar">
+                        <div class="pd-progress-bar-inner" id="overall-progress-bar" style="width:0%"></div>
+                    </div>
+                    
+                    <div class="pd-progress-row">
+                        <span>Design Team</span>
+                        <span id="design-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar design">
+                        <div class="pd-progress-bar-inner" id="design-progress-bar" style="width:0%"></div>
+                    </div>
+                    
+                    <div class="pd-progress-row">
+                        <span>Development Team</span>
+                        <span id="dev-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar dev">
+                        <div class="pd-progress-bar-inner" id="dev-progress-bar" style="width:0%"></div>
+                    </div>
+
+                    <div class="pd-progress-row">
+                        <span>QA Team</span>
+                        <span id="qa-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar qa">
+                        <div class="pd-progress-bar-inner" id="qa-progress-bar" style="width:0%"></div>
+                    </div>
+                    
+                    <div class="pd-progress-stats">
+                        <div><b id="tasks-completed-stats">0/0</b><br/>Tasks Completed</div>
+                        <div class="pd-overdue"><b id="overdue-tasks-stats">0</b><br/>Overdue Tasks</div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <section class="pd-timeline-card">
+            <div class="pd-timeline-header">
+                <h2>Project Timeline</h2>
+                <button class="pd-timeline-add-btn">+</button>
+            </div>
+            <ul class="pd-timeline-list" id="timeline-list">
+                <!-- Timeline events will be populated by JavaScript -->
+            </ul>
+        </section>
+        <section class="pd-files-card">
+            <h2>Files & Attachments</h2>
+            <div class="pd-files-upload">
+                <input type="file" id="file-input" multiple style="display: none;" />
+                <div class="pd-files-drop">Drag and drop files here</div>
+                <button class="pd-files-upload-btn">Upload Files</button>
+            </div>
+            <ul class="pd-files-list" id="files-list">
+                <!-- File list will be populated by JavaScript -->
+            </ul>
+        </section>
+        <!-- <section class="pd-activity-card">
+            <h2>Team Activity</h2>
+            <ul class="pd-activity-list">
+                <li><img src="https://randomuser.me/api/portraits/women/44.jpg"/> Sarah completed task Finalize color palette</li>
+            </ul>
+        </section> -->
+    </main>
+    <script src="../../env.js"></script>
+    <script src="../js/supabase-client.js" defer></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/project-details.js" defer></script>
+</body>
+</html> 

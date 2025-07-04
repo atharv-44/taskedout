@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="../css/project-details-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="pd-header">
+        <input class="pd-search" type="text" placeholder="Search projects, tasks..." />
+        <div class="pd-header-right">
+            <div class="profile">
+                <a href="user_dashboard.html"><img id="pd-user-avatar" src="../../assets/images/user_avatar.png" alt="avatar" class="avatar"></a>
+                <div class="profile-name">
+                    <h2 id="pd-user-username" class="username">User</h2>
+                    <h4 id="pd-user-role" class="user-role">Member</h4>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pd-main">
+        <a href="projects.html" class="pd-back-link">&#8592; Back to Projects</a>
+        <section class="pd-summary-card">
+            <div class="pd-summary-header">
+                <div>
+                    <h1 class="pd-project-title"></h1>
+                    <div class="pd-project-desc"></div>
+                </div>
+            </div>
+            <div class="pd-summary-meta">
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Status</div>
+                    <div class="pd-meta-value pd-status-value"></div>
+                </div>
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Deadline</div>
+                    <div class="pd-meta-value pd-timeline-value"></div>
+                </div>
+                <div class="pd-meta-block">
+                    <div class="pd-meta-label">Location</div>
+                    <div class="pd-meta-value pd-location-value"></div>
+                </div>
+            </div>
+            <div class="pd-progress-label">Progress</div>
+            <div class="pd-progress-bar"><div class="pd-progress-bar-inner" style="width:65%"></div></div>
+        </section>
+
+        <!-- My Tasks & My Progress (user-specific) -->
+        <div class="user-personal-section">
+            <section class="user-my-tasks-card">
+                <div class="my-tasks-header-row">
+                  <h2>My Tasks</h2>
+                  <div class="my-tasks-actions">
+                    <div class="my-tasks-filter-wrap">
+                      <button id="my-tasks-filter-btn" class="my-tasks-filter-btn" type="button">
+                        <span class="my-tasks-filter-icon" aria-hidden="true">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M7 12H17M10 18H14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        Filter
+                      </button>
+                      <select id="my-tasks-filter-select" class="my-tasks-filter-select">
+                        <option value="all">All Tasks</option>
+                        <option value="todo">To Do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="done">Done</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div id="user-my-tasks-list" class="user-my-tasks-list">
+                  <!-- User's tasks will be rendered here by JS as cards -->
+                </div>
+            </section>
+            <section class="user-my-progress-card">
+                <h2>My Progress</h2>
+                <div class="user-progress-bar-container">
+                  <div class="user-progress-bar"><div class="user-progress-bar-inner" id="user-progress-bar-inner" style="width:0%"></div></div>
+                  <div class="user-progress-bar-labels">
+                    <span>Tasks Completed</span>
+                    <span id="user-progress-completed-count">0/0</span>
+                  </div>
+                </div>
+                <div id="user-progress-due-alert" class="user-progress-due-alert" style="display:none;">
+                  <span class="user-progress-alert-icon">&#9888;</span> <span id="user-progress-due-alert-text"></span>
+                </div>
+                <div class="user-progress-stats-grid">
+                  <div class="user-progress-stat-card">
+                    <div class="user-progress-stat-label">Not Started</div>
+                    <div class="user-progress-stat-value" id="user-tasks-todo">0</div>
+                  </div>
+                  <div class="user-progress-stat-card">
+                    <div class="user-progress-stat-label">In Progress</div>
+                    <div class="user-progress-stat-value" id="user-tasks-inprogress">0</div>
+                  </div>
+                  <div class="user-progress-stat-card">
+                    <div class="user-progress-stat-label">Completed</div>
+                    <div class="user-progress-stat-value" id="user-tasks-completed">0</div>
+                  </div>
+                </div>
+                <div id="user-progress-next-due" class="user-progress-next-due" style="display:none;"></div>
+                <div id="user-progress-motivation" class="user-progress-motivation" style="display:none;"></div>
+            </section>
+        </div>
+
+        <div class="pd-main-grid">
+            <!-- Tasks section removed -->
+            <aside class="pd-side-col">
+                <section class="pd-team-card">
+                    <div class="pd-team-header">
+                        <h2>Team Members</h2>
+                    </div>
+                    <ul class="pd-team-list" id="team-list">
+                        <!-- Team members will be populated by JavaScript -->
+                    </ul>
+                </section>
+                <section class="pd-progress-card">
+                    <h2>Project Progress</h2>
+                    <div class="pd-progress-row">
+                        <span>Overall Progress</span>
+                        <span id="overall-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar">
+                        <div class="pd-progress-bar-inner" id="overall-progress-bar" style="width:0%"></div>
+                    </div>
+                    <div class="pd-progress-row">
+                        <span>Design Team</span>
+                        <span id="design-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar design">
+                        <div class="pd-progress-bar-inner" id="design-progress-bar" style="width:0%"></div>
+                    </div>
+                    <div class="pd-progress-row">
+                        <span>Development Team</span>
+                        <span id="dev-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar dev">
+                        <div class="pd-progress-bar-inner" id="dev-progress-bar" style="width:0%"></div>
+                    </div>
+                    <div class="pd-progress-row">
+                        <span>QA Team</span>
+                        <span id="qa-progress-percent">0%</span>
+                    </div>
+                    <div class="pd-progress-bar qa">
+                        <div class="pd-progress-bar-inner" id="qa-progress-bar" style="width:0%"></div>
+                    </div>
+                    <div class="pd-progress-stats">
+                        <div><b id="tasks-completed-stats">0/0</b><br/>Tasks Completed</div>
+                        <div class="pd-overdue"><b id="overdue-tasks-stats">0</b><br/>Overdue Tasks</div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+        <section class="pd-timeline-card">
+            <div class="pd-timeline-header">
+                <h2>Project Timeline</h2>
+            </div>
+            <ul class="pd-timeline-list" id="timeline-list">
+                <!-- Timeline events will be populated by JavaScript -->
+            </ul>
+        </section>
+        <section class="pd-files-card">
+            <h2>Files & Attachments</h2>
+            <div class="pd-files-upload">
+                <input type="file" id="file-input" multiple style="display: none;" />
+                <div class="pd-files-drop">Drag and drop files here</div>
+                <button class="pd-files-upload-btn">Upload Files</button>
+            </div>
+            <ul class="pd-files-list" id="files-list">
+                <!-- File list will be populated by JavaScript -->
+            </ul>
+        </section>
+    </main>
+    <script src="../../env.js"></script>
+    <script src="../js/supabase-client.js" defer></script>
+    <script src="../js/project-details.js" defer></script>
+</body>
+</html> 

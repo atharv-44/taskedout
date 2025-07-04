@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    <link rel="stylesheet" href="../css/dashboard-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="topbar">
+        <button id="hamburgerBtn" aria-label="Toggle Menu">☰</button>
+        <div class="logo">taskedOut.</div>
+    </header>
+    <div class="dashboard-container with-topbar">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            
+            <div class="user-profile">
+                <img src="../../assets/images/default-user.webp" alt="User Avatar" class="avatar" id="userAvatar">
+                <div class="profile-popup" id="profilePopup" style="display: none;">
+                    <label class="popup-item update-pic" for="avatarInput">
+                        <i class="fa-regular fa-image"></i> Update Profile Picture
+                        <input type="file" id="avatarInput" accept="image/*">
+                    </label>
+                    <button class="popup-item delete-pic" id="deleteAvatarBtn">
+                        <i class="fa-regular fa-trash-can"></i> Delete Profile Picture
+                    </button>
+                    <button class="popup-item logout" id="popupLogoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
+                <div class="user-info">
+                    <div class="user-name"></div>
+                    <div class="user-role">User</div>
+                </div> 
+            </div> 
+            <nav class="nav-links">
+                <a href="user_dashboard.html" class="nav-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                <a href="my_tasks.html" class="nav-link active"><i class="fa-solid fa-list-check"></i> My Tasks</a>
+                <a href="projects.html" class="nav-link"><i class="fa-solid fa-folder"></i> Projects</a>
+                <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-spacer"></div>
+            
+        </aside>
+        <div class="sidebar-backdrop"></div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="welcome-text">
+                    <h1>My Tasks</h1>
+                </div>
+            </header>
+            <!-- This is where the task cards will be displayed -->
+            <div class="tasks-grid" id="tasks-grid">
+                <!-- Task cards will be inserted here by JavaScript -->
+            </div>
+        </main>
+    </div>
+    <!-- Load Supabase and page logic -->
+    <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+    <script src="../../env.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/script.js" defer></script>
+    <script src="../js/my_tasks.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.innerWidth < 900) {
+          document.getElementById('sidebar')?.classList.add('collapsed');
+          document.querySelector('.sidebar-backdrop')?.classList.add('collapsed');
+        }
+      });
+    </script>
+    <div id="commentsModal" class="comments-modal" style="display:none;">
+      <div class="comments-modal-content">
+        <span class="close-comments-modal">&times;</span>
+        <h3>Comments</h3>
+        <div id="commentsList"></div>
+        <textarea id="newComment" placeholder="Write your comment..."></textarea>
+        <button id="submitCommentBtn">Submit</button>
+      </div>
+    </div>
+    
+    <script src="../js/app.js" defer></script>
+</body>
+</html> 

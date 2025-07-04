@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Profile</title>
+        <link rel="stylesheet" href="../css/admin_dashboard_style.css">
+        <link rel="stylesheet" href="../css/admin-profile-style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="logo">
+                        <h1 class="h1">taskedOut.</h1>
+                    </div>
+                    <div class="profile">
+                        <a href="admin_profile.html"><img src="../../assets/images/img_avatar.png" alt="avatar" class="avatar"></a>
+                        <div class="profile-name">
+                            <h2 class="username">Admin</h2>
+                            <h4 class="user-role">Admin</h4>
+                        </div>
+                    </div>
+                    <div class="new-task">
+                        <button class="new-task-btn" id="modal-btn">+ New Task</button>
+                        <div class="modal" id="modal">
+                            <div class="modal-box" id="modal-box">
+                                <span id="closeModal">x</span>
+                                <form action="">
+                                    <div class="title">
+                                        <label for="title">Task Title</label>
+                                        <input type="text" name="title" id="title" placeholder="Enter task title" required>
+                                    </div>
+                                    <div class="desc">
+                                        <label for="desc">Task Description</label>
+                                        <textarea name="desc" id="desc" placeholder="Enter task description"></textarea>
+                                    </div>
+                                    <div class="assignees">
+                                        <label for="assignees">Assign to</label>
+                                        <select id="assignees" required>
+                                            <option value="">Select User</option>
+                                        </select>
+                                    </div>
+                                    <div class="due-date">
+                                        <label for="due-date">Deadline</label>
+                                        <input type="date" name="due-date" id="due-date" required>
+                                    </div>
+                                    <div class="status">
+                                        <label for="taskStatus">Status</label>
+                                        <select name="status" id="taskStatus">
+                                            <option value="not started">Not Started</option>
+                                            <option value="in progress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" id="assignBtn">Assign Task</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <h5 class="sub-header">NAVIGATION</h5>
+                    </div>
+                    <div class="navigation-list">
+                        <ul class="navlist-icons">
+                            <li><a href="admin_dashboard.html" class="sidebar-link"><i data-lucide="home"></i><span class="span-tag">Dashboard</span></a></li>
+                            <li><a href="all_tasks.html" class="sidebar-link"><i data-lucide="list-checks"></i><span class="span-tag">All Tasks</span></a></li>
+                            <li><a href="projects.html" class="sidebar-link"><i data-lucide="folder"></i><span class="span-tag">Projects</span></a></li>
+                            <li><a href="user_management.html" class="sidebar-link"><i data-lucide="users"></i><span class="span-tag">User Management</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logout">
+                    <button type="submit" class="log-out-btn" onclick="window.location.href='../../login.html'">
+                        <i data-lucide="log-out" class="log-out-btn-icon"></i>
+                        <h3 class="log-out-btn-txt">Logout</h3>
+                    </button>
+                    <button type="submit" class="settings-btn" onclick="window.location.href='settings.html'">
+                        <i data-lucide="settings" class="settings-btn-icon"></i>
+                    </button>
+                </div>
+            </aside>
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+            <div class="main">
+                <header class="navbar">
+                    <button class="hamburger" id="hamburger-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="h2">
+                        <h2>Admin Profile</h2>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" name="search-box" id="search-box" placeholder="Search">
+                    </div>
+                </header>
+                <section class="content">
+                    <div class="admin-profile-container">
+                        <div class="admin-profile-card">
+                            <div class="admin-profile-avatar-wrap">
+                                <img src="../../assets/images/img_avatar.png" class="admin-profile-avatar" id="admin-avatar-img" alt="Avatar">
+                                <input type="file" id="admin-avatar-upload" accept="image/*" style="display:none;">
+                                <button class="admin-profile-avatar-btn" id="change-avatar-btn">Change Avatar</button>
+                            </div>
+                            <div class="admin-profile-info">
+                                <div class="admin-profile-row">
+                                    <label for="admin-email">Email:</label>
+                                    <input type="email" id="admin-email" class="admin-profile-input" disabled>
+                                </div>
+                                <div class="admin-profile-row">
+                                    <label for="admin-org">Organization:</label>
+                                    <input type="text" id="admin-org" class="admin-profile-input" disabled>
+                                </div>
+                                <div class="admin-profile-row">
+                                    <label for="admin-role">Role:</label>
+                                    <input type="text" id="admin-role" class="admin-profile-input" disabled>
+                                </div>
+                                <div id="admin-profile-message"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <script src="../../env.js"></script>
+        <!-- Load Supabase client, then shared logic, then page-specific logic -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="../js/supabase-client.js"></script>
+        <script src="../js/admin_profile.js"></script>
+        <script src="../js/script.js" defer></script>
+        <!-- <script src="/taskedout-frontend/admin/js/admin_profile.js" defer></script> --> <!-- Optional: for page-specific JS -->
+    </body>
+</html>

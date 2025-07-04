@@ -1,0 +1,349 @@
+/* Projects Page Styles */
+
+.projects-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    padding: 32px 24px;
+    margin-top: 24px;
+}
+
+.projects-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.projects-title {
+    font-family: 'Inter',sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #222;
+}
+
+.projects-desc {
+    font-family: 'Inter',sans-serif;
+    color: #888;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.new-project-btn {
+    background: #0B2349;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter',sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.new-project-btn:hover {
+    background: #2B446A;
+}
+
+.my-projects-card {
+    background: #f8f9fb;
+    border-radius: 12px;
+    padding: 24px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    font-family: 'Inter',sans-serif;
+}
+
+.my-projects-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #222;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.project-card {
+    background: #f4f6fa;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+    transition: box-shadow 0.2s;
+}
+
+.project-card:hover {
+    box-shadow: 0 4px 16px rgba(99,91,255,0.08);
+}
+
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.project-meta {
+    color: #666;
+    font-size: 0.98rem;
+    margin-top: 2px;
+}
+
+.view-project-btn {
+    background: #0B2349;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-family: 'Inter',sans-serif;
+    font-size: 0.98rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 18px;
+    transition: background 0.2s;
+}
+
+.view-project-btn:hover {
+    background: #2B446A;
+}
+
+.delete-project-btn {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.18s, box-shadow 0.18s;
+}
+
+.delete-project-btn svg {
+    display: block;
+    stroke: #d90429;
+    /* premium rich red */
+    transition: stroke 0.18s;
+}
+
+.delete-project-btn:hover, .delete-project-btn:focus {
+    background: rgba(217, 4, 41, 0.08);
+    box-shadow: 0 2px 8px rgba(217, 4, 41, 0.10);
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* Project Details Page Styles */
+.project-details-card {
+    font-family: 'Inter',sans-serif;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 32px 28px;
+    margin-top: 32px;
+}
+
+.project-details-meta {
+    font-family: 'Inter',sans-serif;
+    font-size: 1.08rem;
+    color: #666;
+    margin-bottom: 18px;
+}
+
+.project-details-section {
+    font-family: 'Inter',sans-serif;
+    margin-bottom: 22px;
+}
+
+.project-details-section h3 {
+    font-family: 'Inter',sans-serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.project-details-section ul {
+    font-family: 'Inter',sans-serif;
+    padding-left: 18px;
+    color: #444;
+    font-size: 1rem;
+}
+
+.project-details-section p {
+    font-family: 'Inter',sans-serif;
+    color: #444;
+    font-size: 1rem;
+    margin: 0;
+}
+
+#project-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 30, 50, 0.35); /* darker, more professional overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: background 0.3s;
+    animation: fadeIn 0.3s;
+  }
+  #project-modal-box {
+    position: relative;
+    background: #fff;
+    padding: 36px 32px 28px 32px;
+    width: 600px;
+    max-width: 95vw;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(20, 30, 50, 0.18);
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    animation: modalPop 0.25s cubic-bezier(.4,1.4,.6,1);
+  }
+#closeProjectModal{
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #888;
+    background: #f5f5f5;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+}
+#closeProjectModal:hover, #closeProjectModal:focus{
+    background: #e0e7ef;
+    color: #0B2349;
+    outline: 2px solid #0B2349;
+}
+#project-modal-box form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  #project-modal-box .title,
+  #project-modal-box .desc {
+    grid-column: 1 / -1;
+  }
+  #project-modal-box label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #0B2349;
+    font-size: 15px;
+  }
+  #project-modal-box input[type="text"],
+  #project-modal-box select,
+  #project-modal-box input[type="date"],
+  #project-modal-box textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    background: #f9fafb;
+    transition: border 0.2s, box-shadow 0.2s;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    resize: none;
+  }
+  
+  #project-modal-box input[type="text"]:focus,
+  #project-modal-box input[type="date"]:focus,
+  #project-modal-box textarea:focus {
+    border: 1.5px solid #0B2349;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 2px #e0e7ef;
+  }
+  #project-modal-box textarea {
+    min-height: 100px;
+    max-height: 150px;
+  }
+  #project-modal-box button[type="submit"] {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    padding: 10px 0;
+    background: linear-gradient(90deg, #0B2349 0%, #154387 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(20, 30, 50, 0.07);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  #project-modal-box button[type="submit"]:hover, #project-modal-box button[type="submit"]:focus {
+    background: linear-gradient(90deg, #154387 0%, #0B2349 100%);
+    box-shadow: 0 4px 16px rgba(20, 30, 50, 0.13);
+    outline: 2px none #0B2349;
+  }
+  #project-modal-box input[type="date"]::-webkit-input-placeholder {
+    color: #b0b0b0;
+    font-size: 14px;
+  }
+  #project-modal-box input[type="date"]::-moz-placeholder {
+    color: #b0b0b0;
+    font-size: 14px;
+  }
+  #project-modal-box input[type="date"]:-ms-input-placeholder {
+    color: #b0b0b0;
+    font-size: 14px;
+  }
+  #project-modal-box input[type="date"]::placeholder {
+    color: #b0b0b0;
+    font-size: 14px;
+  }
+  #project-modal-box input[type="date"] {
+    color: #0B2349;
+  }
+  #project-modal-box input[type="date"]:invalid {
+    color: #b0b0b0;
+  }
+  #project-modal-box input[type="text"]:disabled,
+  #project-modal-box input[type="date"]:disabled,
+  #project-modal-box textarea:disabled {
+    background: #f0f0f0;
+    color: #b0b0b0;
+  }
+  
+.blurred {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.3s ease;
+}
+  
+.swal-inter-font {
+  font-family: 'Inter', sans-serif !important;
+}
+  
+.no-projects-msg {
+  text-align: center;
+  color: #888;
+  font-size: 1.08rem;
+  margin: 32px 0 24px 0;
+  letter-spacing: 0.01em;
+}
+  

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="bg-img"></div>
+        <div class="auth-form" id="signup-form">
+            <form class="form-box" id="signupForm"> <div class="login-text">
+                    <h1 style="font-family: 'Matangi'; color:#0B2349">Sign Up</h1>
+                </div>
+                <div class="username">
+                    <label for="username">Username</label>
+                    <input type="text" class="uname" name="username" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input type="email" class="email" name="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="organization">
+                    <label for="userOrganization">Organization</label>
+                    <select id="userOrganization" name="organization" required>
+                        <option value="">Select Organization</option>
+                    </select>
+                </div>
+                <div class="password">
+                    <label for="password">Password</label>
+                    <input type="password" class="pass" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="copassword">
+                    <label for="confirmPassword">Confirm Password</label> <input type="password" class="copass" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required> </div>
+                <button type="submit" id="signupButton">Sign Up</button> <p id="message" class="message-area"></p> <div class="create-acc">
+                    <p>
+                        Already have an Account?
+                        <a href="login.html" style="text-decoration-line: underline; color:#303f9f;">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="env.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="signup.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <link rel="stylesheet" href="../css/dashboard-style.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <button id="hamburgerBtn" aria-label="Toggle Menu">☰</button>
+        <div class="logo">taskedOut.</div>
+    </header>
+    <div class="dashboard-container with-topbar">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            
+            <div class="user-profile">
+                <img src="../../assets/images/default-user.webp" alt="User Avatar" class="avatar" id="userAvatar">
+                <div class="profile-popup" id="profilePopup" style="display: none;">
+                    <label class="popup-item update-pic" for="avatarInput">
+                        <i class="fa-regular fa-image"></i> Update Profile Picture
+                        <input type="file" id="avatarInput" accept="image/*">
+                    </label>
+                    <button class="popup-item delete-pic" id="deleteAvatarBtn">
+                        <i class="fa-regular fa-trash-can"></i> Delete Profile Picture
+                    </button>
+                    <button class="popup-item logout" id="popupLogoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
+                <div class="user-info">
+                    <div class="user-name"></div>
+                    <div class="user-role">User</div>
+                </div> 
+            </div> 
+            <nav class="nav-links">
+                <a href="user_dashboard.html" class="nav-link"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                <a href="my_tasks.html" class="nav-link"><i class="fa-solid fa-list-check"></i> My Tasks</a>
+                <a href="projects.html" class="nav-link"><i class="fa-solid fa-folder"></i> Projects</a>
+                <a href="settings.html" class="nav-link active"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-spacer"></div>
+           
+        </aside>
+        <div class="sidebar-backdrop"></div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="welcome-text">
+                    <h1>Settings</h1>
+                    <p>Manage your account settings and preferences.</p>
+                </div>
+            </header>
+            <div class="settings-card-container">
+                <section class="settings-section settings-card">
+                    <div class="settings-header">
+                        <h2>Profile Settings</h2>
+                    </div>
+                    <form class="settings-form" id="profile-settings-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="edit-btn">Save Changes</button>
+                        </div>
+                        <div id="settings-success" style="display:none;color:#22c55e;margin-top:8px;font-weight:500;"></div>
+                        <div id="settings-error" style="display:none;color:#ef4444;margin-top:8px;font-weight:500;"></div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="../js/app.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+    <script src="../../env.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.innerWidth < 900) {
+          document.getElementById('sidebar')?.classList.add('collapsed');
+          document.querySelector('.sidebar-backdrop')?.classList.add('collapsed');
+        }
+      });
+    </script>
+</body>
+</html> 

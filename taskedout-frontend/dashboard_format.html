@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | TaskedOut</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body class="dark-theme">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>TaskedOut</h2>
+            <div class="user-profile">
+                <img src="assets/images/user_avatar.png" alt="User Avatar">
+                <div>
+                    <span class="user-name">Alex Morgan</span>
+                    <span class="user-role">Admin</span>
+                </div>
+            </div>
+            <button class="new-task-btn">+ New Task</button>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="admin_dashboard.html">Dashboard</a></li>
+                <li><a href="#">My Tasks</a></li>
+                <li><a href="#">All Tasks</a></li>
+                <li><a href="#">Reports</a></li>
+            </ul>
+            <div class="admin-section">
+                <span>ADMIN</span>
+                <ul>
+                    <li><a href="#">User Management</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </div>
+            <a href="#" class="logout-btn">Logout</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Dashboard</h1>
+            <div class="header-actions">
+                <button class="filter-btn">Filter</button>
+                <button class="sort-btn">Sort</button>
+                <input type="text" class="search-bar" placeholder="Search...">
+                <img src="assets/images/user_avatar.png" class="header-avatar" alt="User Avatar">
+            </div>
+        </header>
+        <section class="dashboard-cards">
+            <div class="card">
+                <h3>Pending Tasks</h3>
+                <div class="card-value">12</div>
+                <span class="card-subtext">3 due today</span>
+            </div>
+            <div class="card">
+                <h3>Completed</h3>
+                <div class="card-value">28</div>
+                <span class="card-subtext">This week</span>
+            </div>
+            <div class="card">
+                <h3>Team Members</h3>
+                <div class="card-value">8</div>
+                <span class="card-subtext">Active now: 5</span>
+            </div>
+            <div class="card">
+                <h3>Projects</h3>
+                <div class="card-value">4</div>
+                <span class="card-subtext">2 in progress</span>
+            </div>
+        </section>
+        <section class="my-tasks-section">
+            <div class="section-header">
+                <h2>My Tasks</h2>
+                <a href="#">View All</a>
+            </div>
+            <table class="tasks-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Project</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="openTaskDetail(1)">
+                        <td>Update authentication flow</td>
+                        <td><span class="tag purple">Authentication</span></td>
+                        <td class="highlight">Today</td>
+                        <td><span class="status in-progress">In Progress</span></td>
+                        <td><span class="priority high">High</span></td>
+                    </tr>
+                    <tr onclick="openTaskDetail(2)">
+                        <td>Design system updates</td>
+                        <td><span class="tag blue">Design</span></td>
+                        <td>Tomorrow</td>
+                        <td><span class="status in-progress">In Progress</span></td>
+                        <td><span class="priority medium">Medium</span></td>
+                    </tr>
+                    <tr onclick="openTaskDetail(3)">
+                        <td>API documentation</td>
+                        <td><span class="tag green">Backend</span></td>
+                        <td>Jun 15, 2023</td>
+                        <td><span class="status not-started">Not Started</span></td>
+                        <td><span class="priority low">Low</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="team-activity-section">
+            <h2>Team Activity</h2>
+            <div class="activity-feed">
+                <div class="activity-item" onclick="openActivityDetail(1)">
+                    <img src="assets/images/user_avatar.png" alt="Sarah Johnson">
+                    <div>
+                        <span class="activity-user">Sarah Johnson</span>
+                        <span class="activity-time">10 min ago</span>
+                        <div class="activity-desc">
+                            Completed task <a href="#">Implement user authentication</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- More activity items -->
+            </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="../css/admin_dashboard_style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    </head>
+    <body>
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="logo">
+                        <h1 class="h1">taskedOut.</h1>
+                    </div>
+                    <div class="profile">
+                        <a href="admin_profile.html"><img src="../../assets/images/img_avatar.png" alt="avatar" class="avatar"></a>
+                        <div class="profile-name">
+                            <h2 class="username">Admin</h2>
+                            <h4 class="user-role">Admin</h4>
+                        </div>
+                    </div>
+                    <div class="new-task">
+                        <button class="new-task-btn" id="modal-btn">+ New Task</button>
+                        <div class="modal" id="modal">
+                            <div class="modal-box" id="modal-box">
+                                <span id="closeModal">x</span>
+                                <form action="">
+                                    <div class="title">
+                                        <label for="title">Task Title</label>
+                                        <input type="text" name="title" id="title" placeholder="Enter task title" required>
+                                    </div>
+                                    <div class="desc">
+                                        <label for="desc">Task Description</label>
+                                        <textarea name="desc" id="desc" placeholder="Enter task description"></textarea>
+                                    </div>
+                                    <div class="assignees">
+                                        <label for="assignees">Assign to</label>
+                                        <select id="assignees" required>
+                                            <option value="">Select User</option>
+                                        </select>
+                                    </div>
+                                    <div class="due-date">
+                                        <label for="due-date">Deadline</label>
+                                        <input type="date" name="due-date" id="due-date" required>
+                                    </div>
+                                    <div class="status">
+                                        <label for="taskStatus">Status</label>
+                                        <select name="status" id="taskStatus">
+                                            <option value="not started">Not Started</option>
+                                            <option value="in progress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" id="assignBtn">Assign Task</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <h5 class="sub-header">NAVIGATION</h5>
+                    </div>
+                    <div class="navigation-list">
+                        <ul class="navlist-icons">
+                            <li class="active">
+                                <a href="admin_dashboard.html" class="sidebar-link">
+                                    <i data-lucide="home"></i>
+                                    <span class="span-tag">Dashboard</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="my_tasks.html" class="sidebar-link">
+                                    <i data-lucide="list-checks"></i>
+                                    <span class="span-tag">My Tasks</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="all_tasks.html" class="sidebar-link">
+                                    <i data-lucide="list-checks"></i>
+                                    <span class="span-tag">All Tasks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="projects.html" class="sidebar-link">
+                                    <i data-lucide="folder"></i>
+                                    <span class="span-tag">Projects</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user_management.html" class="sidebar-link">
+                                    <i data-lucide="users"></i>
+                                    <span class="span-tag">User Management</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logout">
+                    <button type="submit" class="log-out-btn" onclick="window.location.href='../../login.html'">
+                        <i data-lucide="log-out" class="log-out-btn-icon"></i>
+                        <h3 class="log-out-btn-txt">Logout</h3>
+                    </button>
+                    <button type="submit" class="settings-btn" onclick="window.location.href='settings.html'">
+                        <i data-lucide="settings" class="settings-btn-icon"></i>
+                    </button>
+                </div>
+            </aside>
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+            <div class="main">
+                <header class="navbar">
+                    <button class="hamburger" id="hamburger-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="h2">
+                        <h2>Dashboard</h2>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" name="search-box" id="search-box" placeholder="Search">
+                    </div>
+                </header>
+                <section class="content">
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <div class="card-title">
+                                <i data-lucide="clock"></i>
+                                Pending Tasks
+                            </div>
+                            <div class="card-main" id="pending-tasks-count">12</div>
+                            <!-- <div class="card-sub" id="pending-tasks-due-today">3 due today</div> -->
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-title">
+                                <i data-lucide="check-square"></i>
+                                Completed
+                            </div>
+                            <div class="card-main" id="completed-tasks-count">28</div>
+                            <div class="card-sub" id="completed-tasks-this-week">This week</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-title">
+                                <i data-lucide="users"></i>
+                                Team Members
+                            </div>
+                            <div class="card-main" id="team-members-count">8</div>
+                            <!-- <div class="card-sub" id="team-members-active">Active now: 5</div> -->
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-title">
+                                <i data-lucide="folder"></i>
+                                Projects
+                            </div>
+                            <div class="card-main" id="projects-count">4</div>
+                            <div class="card-sub" id="projects-in-progress">2 in progress</div>
+                        </div>
+                    </div>
+                    <div class="tasks-section">
+                        <div class="tasks-header">
+                            <h2>Assigned Tasks</h2>
+                            <a href="all_tasks.html" class="view-all-link">View All</a>
+                        </div>
+                        <div class="tasks-table-wrapper">
+                            <table class="tasks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task</th>
+                                        <!-- <th>Project</th> -->
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Assigned to</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="title">
+
+                                            </span>
+                                        </td>
+                                        <!-- <td>
+                                            <span class="tag"></span>
+                                        </td> -->
+                                        <td>
+                                            <span class="deadline">
+
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="status">
+
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="task-assignee">
+
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- <div class="team-activity-section">
+                        <h2>Team Activity</h2>
+                    </div> -->
+                </section>
+            </div>
+        </div>
+        <!-- Load the global Supabase client first -->
+        <script src="../../env.js"></script>
+        <script src="../js/supabase-client.js"></script>
+        <!-- Then load the page-specific script -->
+        <script src="../js/script.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,323 @@
+/* Sidebar */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  
+.my-tasks {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 250px;
+    min-width: 80px;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    transition: width 0.3s ease;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    z-index: 1202;
+    height: 100vh;
+  }
+  
+  /* Contracted sidebar */
+  .sidebar.contracted {
+    width: 80px;
+  }
+  
+  /* Center profile and button */
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Keep logo left-aligned */
+  .logo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #ccc;
+  }
+  
+  .logo .h1 {
+    padding: 10px 15px;
+    font-size: xx-large;
+    font-family: 'Inter', sans-serif;
+    color: #0B2349;
+  }
+  
+  .profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .profile .avatar {
+    margin-left: 20px;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+  }
+  
+  .profile .profile-name {
+    font-family: 'Inter', sans-serif;
+    color: #0B2349;
+  }
+  
+  .profile .username {
+    font-size: x-large;
+    font-weight: bold;
+  }
+  
+  .user-role {
+    color: green;
+  }
+  
+  .new-task-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 65px;
+    background-color: #0B2349;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  
+  .new-task-btn:hover {
+    background-color: #2B446A;
+    /* Slightly lighter blue */
+  }
+  
+  /* Navigation and admin sections left-aligned */
+  .navigation,
+  .admin-section {
+    text-align: left;
+    width: 100%;
+    padding-left: 18px;
+    font-family: 'Inter', sans-serif;
+    color: #0B2349;
+    font-size: medium;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  
+  .navlist-icons,
+  .adminlist-icons {
+    width: 100%;
+    padding-left: 0;
+  }
+  
+  .span-tag{
+    text-decoration-line: none;
+  }
+  .a-tag{
+    text-decoration-line: none;
+    color: #0B2349;
+  }
+  .a-tag::before{
+    color: #0B2349;
+  }
+  .a-tag::after{
+    color: #0B2349;
+  }
+  .a-tag:visited{
+    color: #0B2349;
+  }
+  .navlist-icons li,
+  .adminlist-icons li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    margin: 2px;
+    width: 100%;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: flex-start;
+    font-family: 'Inter', sans-serif;
+    color: #0B2349;
+    font-weight: 500;
+  }
+  
+  .navlist-icons li:hover {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+  
+  .navlist-icons i,
+  .navlist-icons svg {
+    width: 24px;
+    height: 24px;
+    color: #0B2349;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .navlist-icons li.active {
+    background-color: #f0f4ff;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  
+  .navlist-icons i.active,
+  .navlist-icons i:hover {
+    color: #1a76d2;
+  }
+  
+  /* Sidebar content wrapper for flex grow */
+  .sidebar-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logout {
+    margin-top: auto;
+    padding-bottom: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 18px;
+    gap: 110px;
+  }
+  
+  .log-out-btn {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border: none;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    color: #0B2349;
+    font-size: 15px;
+    font-weight: normal;
+    border-radius: 5px;
+  }
+  
+  .log-out-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+  
+  .settings-btn {
+    color: #0B2349;
+    background-color: #fff;
+    border: none;
+    border-radius: 25%;
+  }
+  
+  .settings-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+  
+  /* Responsive behavior */
+  @media (max-width: 900px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      height: 100vh;
+      width: 250px;
+      z-index: 1202;
+      box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+      background: #fff;
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      padding-bottom: 32px;
+    }
+  
+    .sidebar.open {
+      left: 0;
+    }
+  
+    .sidebar-overlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 1201;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+  }
+  
+  /* Sidebar overlay for mobile */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1201;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  /* Sidebar sliding animation for mobile */
+  .sidebar {
+    transition: width 0.3s ease, left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @media (max-width: 900px) {
+    .sidebar {
+      position: fixed;
+      left: -260px;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: 1202;
+      width: 250px;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  
+    .sidebar.open {
+      left: 0;
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  
+    .sidebar-overlay {
+      display: block;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .sidebar.contracted {
+      left: -260px;
+    }
+  }
+  
+  /* Prevent background scroll when sidebar is open */
+  .no-scroll {
+    overflow: hidden !important;
+    height: 100vh;
+  }

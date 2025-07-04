@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <button id="hamburgerBtn" aria-label="Toggle Menu">☰</button>
+        <div class="logo">taskedOut.</div>
+    </header>
+    <div class="dashboard-container with-topbar">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            
+            <div class="user-profile">
+                <img src="../../assets/images/default-user.webp" alt="User Avatar" class="avatar" id="userAvatar">
+                <div class="user-info">
+                    <div class="user-name"></div>
+                    <div class="user-role">User</div>
+                </div>
+                <div class="profile-popup" id="profilePopup" style="display: none;">
+                    <label class="popup-item update-pic" for="avatarInput">
+                        <i class="fa-regular fa-image"></i> Update Profile Picture
+                        <input type="file" id="avatarInput" accept="image/*">
+                    </label>
+                    <button class="popup-item delete-pic" id="deleteAvatarBtn">
+                        <i class="fa-regular fa-trash-can"></i> Delete Profile Picture
+                    </button>
+                    <button class="popup-item logout" id="popupLogoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                <a href="my_tasks.html" class="nav-link"><i class="fa-solid fa-list-check"></i> My Tasks</a>
+                <a href="projects.html" class="nav-link"><i class="fa-solid fa-folder"></i> Projects</a>
+                <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-spacer"></div>
+            
+        </aside>
+        <div class="sidebar-backdrop"></div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="welcome-text">
+                    <h1>Welcome, <span class="user-name"></span></h1>
+                    <p>Here's what's happening with your tasks today</p>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search tasks...">
+                </div>
+            </header>
+            <section class="summary-cards">
+                <div class="summary-card pending">
+                    <div class="card-header">
+                        <span class="card-title">Pending Tasks</span>
+                        <span class="card-icon-bg pending"><i class="fa-regular fa-clock"></i></span>
+                    </div>
+                    <div class="card-value"></div>
+                    <div class="card-subtext pending"></div>
+                </div>
+                <div class="summary-card completed">
+                    <div class="card-header">
+                        <span class="card-title">Completed Tasks</span>
+                        <span class="card-icon-bg completed"><i class="fa-solid fa-check"></i></span>
+                    </div>
+                    <div class="card-value"></div>
+                    <div class="card-subtext completed"></div>
+                </div>
+                <div class="summary-card due">
+                    <div class="card-header">
+                        <span class="card-title">Due Today</span>
+                        <span class="card-icon-bg due"><i class="fa-regular fa-calendar"></i></span>
+                    </div>
+                    <div class="card-value"></div>
+                    <div class="card-subtext due"></div>
+                </div>
+                <div class="summary-card overdue">
+                    <div class="card-header">
+                        <span class="card-title">Overdue Tasks</span>
+                        <span class="card-icon-bg overdue"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                    </div>
+                    <div class="card-value"></div>
+                    <div class="card-subtext overdue"></div>
+                </div>
+            </section>
+            <section class="dashboard-main">
+                <div class="tasks-section">
+                    <div class="tasks-header">
+                        <h2>My Tasks</h2>
+                        <div class="task-filters">
+                            <!-- Removed status and priority filter dropdowns -->
+                        </div>
+                    </div>
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasksTableBody">
+                            <!-- JS will inject task rows here -->
+                        </tbody>
+                    </table>
+                    <div class="view-all-tasks"><a href="my_tasks.html">View All Tasks</a></div>
+                </div>
+                <div class="progress-section">
+                    <h2>Progress Overview</h2>
+                    <div class="progress-chart-container">
+                        <canvas id="progressChart" width="220" height="220"></canvas>
+                    </div>
+                    <ul class="progress-legend">
+                        <li><span class="legend-color completed"></span>Completed <span class="legend-value completed">72%</span></li>
+                        <li><span class="legend-color in-progress"></span>In Progress <span class="legend-value in-progress">20%</span></li>
+                        <li><span class="legend-color pending"></span>Pending <span class="legend-value pending">8%</span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../env.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/app.js" defer></script>
+</body>
+</html>

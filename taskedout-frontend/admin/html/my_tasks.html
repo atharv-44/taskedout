@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Tasks</title>
+        <link rel="stylesheet" href="../css/admin_dashboard_style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body>
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="logo">
+                        <h1 class="h1">taskedOut.</h1>
+                    </div>
+                    <div class="profile">
+                        <a href="admin_profile.html"><img src="../../assets/images/img_avatar.png" alt="avatar" class="avatar"></a>
+                        <div class="profile-name">
+                            <h2 class="username">Admin</h2>
+                            <h4 class="user-role">Admin</h4>
+                        </div>
+                    </div>
+                    <div class="new-task">
+                        <button class="new-task-btn">+ New Task</button>
+                    </div>
+                    <div class="navigation">
+                        <h5 class="sub-header">NAVIGATION</h5>
+                    </div>
+                    <div class="navigation-list">
+                        <ul class="navlist-icons">
+                            <li><a href="admin_dashboard.html" class="sidebar-link"><i data-lucide="home"></i><span class="span-tag">Dashboard</span></a></li>
+                            <li><a href="my_tasks.html" class="sidebar-link"><i data-lucide="list-checks"></i><span class="span-tag">My Tasks</span></a></li>
+                            <li><a href="all_tasks.html" class="sidebar-link"><i data-lucide="list-checks"></i><span class="span-tag">All Tasks</span></a></li>
+                            <li><a href="projects.html" class="sidebar-link"><i data-lucide="folder"></i><span class="span-tag">Projects</span></a></li>
+                            <li><a href="user_management.html" class="sidebar-link"><i data-lucide="users"></i><span class="span-tag">User Management</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logout">
+                    <button type="submit" class="log-out-btn" onclick="window.location.href='/taskedout-frontend/login.html'">
+                        <i data-lucide="log-out" class="log-out-btn-icon"></i>
+                        <h3 class="log-out-btn-txt">Logout</h3>
+                    </button>
+                    <button type="submit" class="settings-btn" onclick="window.location.href='/taskedout-frontend/admin/html/settings.html'">
+                        <i data-lucide="settings" class="settings-btn-icon"></i>
+                    </button>
+                </div>
+            </aside>
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+            <div class="main">
+                <header class="navbar">
+                    <button class="hamburger" id="hamburger-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="h2">
+                        <h2>My Tasks</h2>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" name="search-box" id="search-box" placeholder="Search">
+                    </div>
+                </header>
+                <section class="content">
+                    <div class="tasks-grid" id="tasks-grid">
+                        <!-- Task cards will be inserted here by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Load Supabase client, then shared logic, then page-specific logic -->
+        <script src="../../env.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="../js/supabase-client.js"></script>
+        <script src="../js/script.js" defer></script>
+        <script src="../js/my_tasks.js" defer></script>
+        <script>
+            lucide.createIcons();
+            // Responsive sidebar logic
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
+            const navLinks = document.querySelectorAll('.navlist-icons li');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                overlay.style.display = 'block';
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.classList.add('no-scroll');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 10);
+            }
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('no-scroll');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            }
+
+            hamburger.addEventListener('click', openSidebar);
+            overlay.addEventListener('click', closeSidebar);
+            navLinks.forEach(link => link.addEventListener('click', closeSidebar));
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 900) {
+                    closeSidebar();
+                }
+            });
+        </script>
+    </body>
+</html>

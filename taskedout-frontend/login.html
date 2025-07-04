@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container"> 
+        <div class="bg-img"></div>
+        <div class="auth-form" id="login-form">
+            <form class="form-box" id="loginForm"> <div class="login-text">
+                    <h1 style="font-family: 'Matangi'; color:#0B2349">Login</h1>
+                </div>
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input type="email" class="uname" name="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="password">
+                    <label for="password">Password</label>
+                    <input type="password" class="pass" name="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" id="loginButton">Sign In</button> <p id="message" class="message-area"></p> <div class="create-acc">
+                    <p>
+                        Don't have an Account?
+                        <a href="signup.html" style="text-decoration-line: underline; color:#303f9f;">Register Now</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="env.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

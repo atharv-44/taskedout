@@ -1,0 +1,201 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Management</title>
+        <link rel="stylesheet" href="../css/admin_dashboard_style.css">
+        <link rel="stylesheet" href="../css/user-management-style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Matangi:wght@300..900&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+    <body style="font-family: 'Inter',sans-serif;">
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="logo">
+                        <h1 class="h1">taskedOut.</h1>
+                    </div>
+                    <div class="profile">
+                        <a href="admin_profile.html"><img src="../../assets/images/img_avatar.png" alt="avatar" class="avatar"></a>
+                        <div class="profile-name">
+                            <h2 class="username">Admin</h2>
+                            <h4 class="user-role">Admin</h4>
+                        </div>
+                    </div>
+                    <div class="new-task">
+                        <button class="new-task-btn" id="modal-btn">+ New Task</button>
+                        <div class="modal" id="modal">
+                            <div class="modal-box" id="modal-box">
+                                <span id="closeModal">x</span>
+                                <form action="">
+                                    <div class="title">
+                                        <label for="title">Task Title</label>
+                                        <input type="text" name="title" id="title" placeholder="Enter task title" required>
+                                    </div>
+                                    <div class="desc">
+                                        <label for="desc">Task Description</label>
+                                        <textarea name="desc" id="desc" placeholder="Enter task description"></textarea>
+                                    </div>
+                                    <div class="assignees">
+                                        <label for="assignees">Assign to</label>
+                                        <select id="assignees" required>
+                                            <option value="">Select User</option>
+                                        </select>
+                                    </div>
+                                    <div class="due-date">
+                                        <label for="due-date">Deadline</label>
+                                        <input type="date" name="due-date" id="due-date" required>
+                                    </div>
+                                    <div class="status">
+                                        <label for="taskStatus">Status</label>
+                                        <select name="status" id="taskStatus">
+                                            <option value="not started">Not Started</option>
+                                            <option value="in progress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" id="assignBtn">Assign Task</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <h5 class="sub-header">NAVIGATION</h5>
+                    </div>
+                    <div class="navigation-list">
+                        <ul class="navlist-icons">
+                            <li>
+                                <a href="admin_dashboard.html" class="sidebar-link">
+                                    <i data-lucide="home"></i>
+                                    <span class="span-tag">Dashboard</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="my_tasks.html" class="sidebar-link">
+                                    <i data-lucide="list-checks"></i>
+                                    <span class="span-tag">My Tasks</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="all_tasks.html" class="sidebar-link">
+                                    <i data-lucide="list-checks"></i>
+                                    <span class="span-tag">All Tasks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="projects.html" class="sidebar-link">
+                                    <i data-lucide="folder"></i>
+                                    <span class="span-tag">Projects</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user_management.html" class="sidebar-link">
+                                    <i data-lucide="users"></i>
+                                    <span class="span-tag">User Management</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logout">
+                    <button type="submit" class="log-out-btn" onclick="window.location.href='../../login.html'">
+                        <i data-lucide="log-out" class="log-out-btn-icon"></i>
+                        <h3 class="log-out-btn-txt">Logout</h3>
+                    </button>
+                    <button type="submit" class="settings-btn" onclick="window.location.href='settings.html'">
+                        <i data-lucide="settings" class="settings-btn-icon"></i>
+                    </button>
+                </div>
+            </aside>
+            <div id="sidebar-overlay" class="sidebar-overlay"></div>
+            <div class="main">
+                <header class="navbar">
+                    <button class="hamburger" id="hamburger-btn" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="h2">
+                        <h2>User Management</h2>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" name="search-box" id="search-box" placeholder="Search">
+                    </div>
+                </header>
+                <section class="content">
+                    <div class="user-management-container">
+                        <div class="user-management-header">
+                            <p class="user-header-text">Manage all registered users in the system.</p>
+
+                            <div class="user-list-controls">
+                                <label for="role-filter">Filter by Role:</label>
+                                <select id="role-filter">
+                                    <option value="ALL">All</option>
+                                    <option value="USER">User</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </div>
+
+                            <button class="add-user-btn" id="addUserBtn">+ Add User</button>
+                        </div>
+
+                        <div class="user-list-container">
+                            <div class="table-wrapper">
+                                <table class="user-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        id="user-table-body"><!-- User rows will be dynamically inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Add User Modal -->
+        <div class="user-modal" id="user-modal">
+            <div class="user-modal-box" id="user-modal-box">
+                <span id="closeUserModal" class="close-user-modal">x</span>
+                <form id="userForm" autocomplete="off">
+                    <div class="title">
+                        <label for="username-input">Username</label>
+                        <input type="text" id="username-input" placeholder="Enter username" required>
+                    </div>
+                    <div class="email">
+                        <label for="email-input">Email</label>
+                        <input type="email" id="email-input" placeholder="Enter email" required>
+                    </div>
+                    <div class="password">
+                        <label for="password-input">Password</label>
+                        <input type="password" id="password-input" placeholder="Enter password" required>
+                    </div>
+                    <div class="role">
+                        <label for="role-select">Role</label>
+                        <select id="role-select">
+                            <option value="USER">User</option>
+                            <option value="ADMIN">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="createUserBtn">Create User</button>
+                </form>
+            </div>
+        </div>
+        <script src="../../env.js"></script>
+        <!-- Load Supabase client, then shared logic, then page-specific logic -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <!-- Include SweetAlert2 in your HTML -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/supabase-client.js"></script>
+        <script src="../js/script.js" defer></script>
+        <script src="../js/user_management.js" defer></script>
+    </body>
+</html>
