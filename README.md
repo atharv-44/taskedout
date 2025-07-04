@@ -52,4 +52,4 @@ We welcome contributions to make TaskedOut even better\!
 
 ## 👤 Author
 
-Built with  [@atharv-44](https://www.google.com/search?q=https://github.com/atharv-44) 👊🏻
+Built with  [@prayagupa23](https://www.google.com/search?q=https://github.com/prayagupa23) 👊🏻
